@@ -27,7 +27,7 @@ public class Calculator {
             case "+":
                 if (parts[0].matches("[I|iV|vX|x]") || parts[2].matches("[I|iV|vX|x]")) {
                     int result = a + b;
-                    return convertIntToRoman(result);
+                    return intToRoman(result);
                 } else return Integer.toString(a + b);
             case "-":
                 if (parts[0].matches("[I|iV|vX|x]") || parts[2].matches("[I|iV|vX|x]")) {
@@ -35,17 +35,17 @@ public class Calculator {
                     if (result < 0){
                         System.out.println("throws Exception");
                     }
-                    return convertIntToRoman(result);
+                    return intToRoman(result);
                 } else return Integer.toString(a - b);
             case "*":
                 if (parts[0].matches("[I|iV|vX|x]") || parts[2].matches("[I|iV|vX|x]")) {
                     int result = a * b;
-                    return convertIntToRoman(result);
+                    return intToRoman(result);
                 } else return Integer.toString(a * b);
             case "/":
                 if (parts[0].matches("[I|iV|vX|x]") || parts[2].matches("[I|iV|vX|x]")) {
                     int result = a / b;
-                    return convertIntToRoman(result);
+                    return intToRoman(result);
                 } else return Integer.toString((int)(a / b));
             default: throw new Exception("Я таких операций не знаю");
         }
@@ -88,7 +88,7 @@ public class Calculator {
         }
         return res;
     }
-    private static String convertIntToRoman (int numArabian) {
+    private static String intToRoman (int numArabian) {
         String[] roman = {"O", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX",
                 "XXI", "XXII", "XXIII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX", "XXX", "XXXI", "XXXII", "XXXIII", "XXXIV", "XXXV", "XXXVI", "XXXVII", "XXXVIII", "XXXIX", "XL",
                 "XLI", "XLII", "XLIII", "XLIV", "XLV", "XLVI", "XLVII", "XLVIII", "XLIX", "L", "LI", "LII", "LIII", "LIV", "LV", "LVI", "LVII", "LVIII", "LIX", "LX",
