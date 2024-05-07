@@ -173,7 +173,7 @@ public class Calculator {
         }
 
         if (romanNumeral.length() > 0) {
-            throw new IllegalArgumentException(input + " cannot be converted to a Roman Numeral");
+            throw new IllegalArgumentException(input + " cannot be converted");
         }
 
         return result;
