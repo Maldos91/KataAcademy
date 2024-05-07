@@ -1,7 +1,4 @@
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Calculator {
@@ -41,7 +38,7 @@ public class Calculator {
                             throw new Exception("throws Exception");
                         }
                         return convertArabicToRoman(result);
-                    } else if (containsArabicDigits(parts[0]) && containsArabicDigits(parts[2])) {
+                    } else if (parts[0].matches("^[1-9]?[0-9]$") && parts[2].matches("^[1-9]?[0-9]$")) {
                         return Integer.toString(a + b);
                     } else {
                         throw new Exception("throws Exception");
@@ -53,7 +50,7 @@ public class Calculator {
                             throw new Exception("throws Exception");
                         }
                         return convertArabicToRoman(result);
-                    } else if (containsArabicDigits(parts[0]) && containsArabicDigits(parts[2])) {
+                    } else if (parts[0].matches("^[1-9]?[0-9]$") && parts[2].matches("^[1-9]?[0-9]$")) {
                         return Integer.toString(a - b);
                     } else {
                         throw new Exception("throws Exception");
@@ -62,7 +59,7 @@ public class Calculator {
                     if (parts[0].matches("^[I|iV|vX|x]+$") && parts[2].matches("^[I|iV|vX|x]+$")) {
                         int result = a * b;
                         return convertArabicToRoman(result);
-                    } else if (containsArabicDigits(parts[0]) && containsArabicDigits(parts[2])) {
+                    } else if (parts[0].matches("^[1-9]?[0-9]$") && parts[2].matches("^[1-9]?[0-9]$")) {
                         return Integer.toString(a * b);
                     } else {
                         throw new Exception("throws Exception");
@@ -71,7 +68,7 @@ public class Calculator {
                     if (parts[0].matches("^[I|iV|vX|x]+$") && parts[2].matches("^[I|iV|vX|x]+$")) {
                         int result = a / b;
                         return convertArabicToRoman(result);
-                    } else if (containsArabicDigits(parts[0]) && containsArabicDigits(parts[2])) {
+                    } else if (parts[0].matches("^[1-9]?[0-9]$") && parts[2].matches("^[1-9]?[0-9]$")) {
                         return Integer.toString((int) (a / b));
                     } else {
                         throw new Exception("throws Exception");
@@ -90,7 +87,7 @@ public class Calculator {
         if (!isValidNumber(number)) {
             throw new Exception("Неверное число");
         }
-        if (number.matches("^[I|iV|v|iX|x]+$")) {
+        if (number.matches("^[I|iV|vX|x]+$")) {
             int num = romanToArabic(number);
             if (num < 1 || num > 10) {
                 throw new Exception("Число должно быть в диапазоне от I до X");
@@ -106,7 +103,7 @@ public class Calculator {
     }
 
     private static boolean isValidNumber(String number) {
-        return number.matches("^[1-9]?[0-9]$") || number.matches("^[I|i|V|v|X|x]+$");
+        return number.matches("^[1-9]?[0-9]$") || number.matches("^[I|iV|vX|x]+$");
     }
 
     private static String convertArabicToRoman(int numArabian) {
@@ -122,17 +119,6 @@ public class Calculator {
         return s;
     }
 
-    public static boolean containsArabicDigits(String input) {
-        for (char c : input.toCharArray()) {
-            if (Character.isDigit(c)) {
-                int digit = Character.getNumericValue(c);
-                if (digit >= 0 && digit <= 9) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
     enum RomanNumeral {
         I(1), IV(4), V(5), IX(9), X(10),
         XL(40), L(50), XC(90), C(100),
